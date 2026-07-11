@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  name      String
+  pinHash   String
+  role      String   @default("SUPER_ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum InquiryStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+model ContactInquiry {
+  id        String        @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  service   String?
+  budget    String?
+  subject   String?
+  message   String
+  status    InquiryStatus @default(NEW)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model WebsiteContent {
+  id          String   @id @default(uuid())
+  sectionKey  String   @unique
+  title       String
+  subtitle    String?
+  description String?
+  content     Json?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id               String   @id @default(uuid())
+  title            String
+  slug             String   @unique
+  shortDescription String
+  description      String
+  icon             String?
+  image            String?
+  features         Json?
+  metadata         Json?
+  isActive         Boolean  @default(true)
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Project {
+  id           String   @id @default(uuid())
+  title        String
+  slug         String   @unique
+  description  String
+  image        String?
+  technologies Json?
+  metadata     Json?
+  projectUrl   String?
+  isFeatured   Boolean  @default(false)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Career {
+  id           String   @id @default(uuid())
+  title        String
+  location     String
+  type         String
+  description  String
+  requirements Json?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Setting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
