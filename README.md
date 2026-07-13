@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/SocialOrangeGlobal/orange-global-infotech/main/public/logo-dark.png" alt="Orange Global Infotech Logo" width="400"/>
+</p>
+
 # Orange Global Infotech Backend
 
 This is a complete, production-ready NestJS backend for the **Orange Global Infotech** website. It provides a robust, typed API that connects to a Supabase PostgreSQL database using the Prisma ORM. It serves both the public-facing website and the private Admin Dashboard.
