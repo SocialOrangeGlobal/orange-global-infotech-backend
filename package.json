@@ -1,7 +1,7 @@
 {
   "name": "orange-global-infotech-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\"",
